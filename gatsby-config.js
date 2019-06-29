@@ -6,6 +6,16 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-source-datocms`,
+      options: {
+        apiToken: `677cab2ffbf39eafb76fa689c1d3d6`,
+        previewMode: false,
+        disableLiveReload: false
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -13,8 +23,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
