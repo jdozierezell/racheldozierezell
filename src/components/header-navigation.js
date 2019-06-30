@@ -6,11 +6,6 @@ import mq from '../helpers/media-queries'
 
 const pageList = css`
     position: fixed;
-    background: yellow;
-    height: 500px;
-    width: 80vw;
-    top: 0px;
-    left: 20vw;
     ${mq[1]} {
         display: flex;
     }
@@ -22,8 +17,11 @@ const pageList = css`
     justify-content: flex-start;
     transition: left 200ms ease-out;
 `
+const pageListInactive = css`
+    left: 100vw;
+`
 const pageListActive = css`
-    position: initial;
+    left: 20vw;
 `
 const pageListItem = css`
     font-size: 32px;
@@ -40,11 +38,11 @@ const navLinks = [
         navLink: `/`,
     },
     {
-        navText: `Much`,
+        navText: `About`,
         navLink: `/about`,
     },
     {
-        navText: `Harder`,
+        navText: `Contact`,
         navLink: `/contact`,
     },
 ]
@@ -55,14 +53,17 @@ class HeaderNavigation extends Component {
     }
     state = {
         active: this.props.active,
-        css: pageList,
     }
     componentWillReceiveProps(nextProps) {
         this.setState({ active: nextProps.active })
+        this.setState({ css: nextProps.active ? 'pageLinkActive' : '' })
     }
     render() {
+        const pageListStyle = this.state.active
+            ? [pageList, pageListActive]
+            : [pageList, pageListInactive]
         return (
-            <ul css={this.state.css}>
+            <ul css={pageListStyle}>
                 {navLinks.map(item => {
                     return (
                         <li css={pageListItem}>
