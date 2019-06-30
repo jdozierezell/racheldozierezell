@@ -1,27 +1,45 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { graphql } from 'gatsby'
-
+import { HelmetDatoCms } from 'gatsby-source-datocms'
+import Img from 'gatsby-image'
 import Layout from '../components/layout'
-import Image from '../components/image'
-import SEO from '../components/seo'
 
 const IndexPage = ({ data }) => {
     return (
         <Layout>
-            <SEO title="Home" />
-            {console.log(data.work.title)}
+            <HelmetDatoCms seo={data.seo.seoMetaTags} />
+            {data.works.edges.map(({ node }) => {
+                return (
+                    <article>
+                        <Img fluid={node.images[0].fluid} />
+                        <h2>{node.title}</h2>
+                    </article>
+                )
+            })}
         </Layout>
     )
 }
 
 export const query = graphql`
     query {
-        work: datoCmsWork {
+        seo: datoCmsHome(title: { eq: "Home" }) {
             title
-            descriptionNode {
-                internal {
-                    content
+            seoMetaTags {
+                ...GatsbyDatoCmsSeoMetaTags
+            }
+        }
+        works: allDatoCmsWork {
+            edges {
+                node {
+                    id: originalId
+                    title
+                    slug
+                    images {
+                        fluid(maxWidth: 500, maxHeight: 500) {
+                            ...GatsbyDatoCmsFluid_tracedSVG
+                        }
+                    }
                 }
             }
         }

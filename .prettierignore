@@ -1,1 +1,6 @@
 .cache/
+public/
+yarn.lock
+node_modules
+.prettierignore
+
