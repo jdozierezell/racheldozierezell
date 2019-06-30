@@ -6,7 +6,10 @@ import mq from '../helpers/media-queries'
 
 const pageList = css`
     position: fixed;
-    top: 225px;
+    background: yellow;
+    height: 500px;
+    width: 80vw;
+    top: 0px;
     left: 20vw;
     ${mq[1]} {
         display: flex;
