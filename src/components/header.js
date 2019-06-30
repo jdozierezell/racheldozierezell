@@ -9,6 +9,7 @@ import HeaderNavigation from './header-navigation'
 
 const siteHeader = css`
     background: ${styles.colors.pink};
+    height: 144px;
     marginbottom: 1.45rem;
     display: grid;
     grid-template-columns: 150px 1fr;

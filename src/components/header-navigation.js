@@ -6,7 +6,8 @@ import mq from '../helpers/media-queries'
 
 const pageList = css`
     position: fixed;
-    left: 100%;
+    top: 225px;
+    left: 20vw;
     ${mq[1]} {
         display: flex;
     }
@@ -36,11 +37,11 @@ const navLinks = [
         navLink: `/`,
     },
     {
-        navText: `About`,
+        navText: `Much`,
         navLink: `/about`,
     },
     {
-        navText: `Contact`,
+        navText: `Harder`,
         navLink: `/contact`,
     },
 ]
