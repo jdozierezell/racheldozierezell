@@ -9,12 +9,11 @@ import MenuButton from './menu-button'
 import HeaderNavigation from './header-navigation'
 
 const SiteHeader = styled.header`
-    height: 102px;
     display: grid;
     position: absolute;
-    left: 100vw;
     grid-template-columns: 150px 1fr;
     ${mq[1]} {
+        height: 102px;
         display: grid;
         position: relative;
     }
