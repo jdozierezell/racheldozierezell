@@ -80,6 +80,7 @@ const query = graphql`
                         h: "1215"
                         fit: "crop"
                         crop: "faces"
+                        q: 75
                     }
                 ) {
                     ...GatsbyDatoCmsFluid_tracedSVG
@@ -89,11 +90,11 @@ const query = graphql`
                 fluid(
                     maxWidth: 2160
                     imgixParams: {
-                        dpr: 3
                         w: "2160"
                         h: "1000"
                         fit: "crop"
                         crop: "faces"
+                        q: 75
                     }
                 ) {
                     ...GatsbyDatoCmsFluid_tracedSVG
