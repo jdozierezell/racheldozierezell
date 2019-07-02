@@ -1,18 +1,29 @@
 import React from 'react'
 import Layout from '../components/layout'
-import { graphql } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
 import { HelmetDatoCms } from 'gatsby-source-datocms'
-import Image from 'gatsby-image'
+import { css } from '@emotion/core'
+import HeaderImage from '../components/header-image'
+import styles from '../../theme'
 
-const About = ({ data }) => {
+const barStyle = css`
+    height: 2rem;
+    background: ${styles.colors.pink};
+`
+const articleStyle = css`
+    margin: 3rem 2rem;
+    line-height: 1.5;
+`
+const About = () => {
+    const data = useStaticQuery(query)
     const { about } = data
-    const { content, coverImage, title, seoMetaTags } = about
+    const { content, desktopImage, mobileImage, title, seoMetaTags } = about
     return (
         <Layout>
             <HelmetDatoCms seo={seoMetaTags} />
-            <Image fluid={coverImage.fluid} />
-            <h1>{title}</h1>
-            <article>
+            <HeaderImage image={[desktopImage, mobileImage]} title={title} />
+            <div css={barStyle} />
+            <article css={articleStyle}>
                 {content.map(block => {
                     return (
                         <div key={block.id}>
@@ -39,9 +50,32 @@ export const query = graphql`
         about: datoCmsAbout {
             title
             slug
-            coverImage {
-                fluid {
-                    src
+            mobileImage: coverImage {
+                fluid(
+                    maxWidth: 2160
+                    imgixParams: {
+                        w: "2160"
+                        h: "1000"
+                        fit: "crop"
+                        crop: "faces"
+                        q: 75
+                    }
+                ) {
+                    ...GatsbyDatoCmsFluid_tracedSVG
+                }
+            }
+            desktopImage: coverImage {
+                fluid(
+                    maxWidth: 2160
+                    imgixParams: {
+                        w: "2160"
+                        h: "1215"
+                        fit: "crop"
+                        crop: "edges"
+                        q: 75
+                    }
+                ) {
+                    ...GatsbyDatoCmsFluid_tracedSVG
                 }
             }
             content {

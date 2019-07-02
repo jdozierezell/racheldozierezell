@@ -18,7 +18,7 @@ module.exports = {
             options: {
                 apiToken: process.env.DATOCMS_API,
                 previewMode: true,
-                disableLiveReload: true,
+                disableLiveReload: false,
             },
         },
         {

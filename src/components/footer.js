@@ -4,6 +4,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 // import { css } from '@emotion/core'
 import styles from '../../theme'
+import mq from '../helpers/media-queries'
 
 const PageFooter = styled.footer`
     color: ${styles.colors.white};
@@ -13,8 +14,11 @@ const PageFooter = styled.footer`
     font-family: rockwell-nova, sans-serif;
     display: grid;
     align-content: center;
-    justify-content: flex-end;
+    justify-content: center;
     padding-right: 1rem;
+    ${mq[1]} {
+        justify-content: flex-end;
+    }
 `
 
 const Footer = () => (
