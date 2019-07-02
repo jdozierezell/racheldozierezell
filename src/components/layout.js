@@ -7,28 +7,17 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useStaticQuery, graphql } from 'gatsby'
+// import { useStaticQuery, graphql } from 'gatsby'
 
 import Header from './header'
 import Footer from './footer'
 import './layout.css'
 import 'normalize.css'
-import MenuButton from './menu-button'
 
-const Layout = ({ children }) => {
-    const data = useStaticQuery(graphql`
-        query SiteTitleQuery {
-            site {
-                siteMetadata {
-                    title
-                }
-            }
-        }
-    `)
-
+const Layout = ({ children, home }) => {
     return (
         <>
-            <Header />
+            <Header home={home} />
             <div
                 style={{
                     margin: `0 auto`,

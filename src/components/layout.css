@@ -3,6 +3,11 @@ body {
     background: black;
     font-family: mr-eaves-modern, sans-serif;
     font-weight: 300;
+    font-size: 1.5rem;
+    color: white;
+}
+a {
+    color: rgba(242, 5, 92, 1);
 }
 /*!
 * Hamburgers

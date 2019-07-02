@@ -1,18 +1,20 @@
-import { Link } from 'gatsby'
-import PropTypes from 'prop-types'
+// import { Link } from 'gatsby'
+// import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { css } from '@emotion/core'
+import styled from '@emotion/styled'
 import styles from '../../theme'
 import mq from '../helpers/media-queries'
 import MenuButton from './menu-button'
 import HeaderNavigation from './header-navigation'
 
-const siteHeader = css`
-    background: ${styles.colors.pink};
-    height: 144px;
-    marginbottom: 1.45rem;
-    display: grid;
+const SiteHeader = styled.header`
+    height: 102px;
+    display: none;
     grid-template-columns: 150px 1fr;
+    ${mq[1]} {
+        display: grid;
+    }
 `
 const navWrapper = css`
     margin: 0;
@@ -40,8 +42,17 @@ class Header extends Component {
         this.setState({ active: !this.state.active })
     }
     render() {
+        const background =
+            this.props.home === true ? 'transparent' : styles.colors.pink
         return (
-            <header css={siteHeader}>
+            <SiteHeader
+                css={css`
+                    background: ${background};
+                    ${mq[1]} {
+                        background: ${styles.colors.pink};
+                    }
+                `}
+            >
                 <svg
                     css={logo}
                     version="1.1"
@@ -63,7 +74,7 @@ class Header extends Component {
                     />
                     <HeaderNavigation active={this.state.active} />
                 </nav>
-            </header>
+            </SiteHeader>
         )
     }
 }

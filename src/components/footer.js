@@ -1,8 +1,8 @@
-import { Link } from 'gatsby'
-import PropTypes from 'prop-types'
+// import { Link } from 'gatsby'
+// import PropTypes from 'prop-types'
 import React from 'react'
 import styled from '@emotion/styled'
-import { css } from '@emotion/core'
+// import { css } from '@emotion/core'
 import styles from '../../theme'
 
 const PageFooter = styled.footer`

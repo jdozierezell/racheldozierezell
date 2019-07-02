@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { css } from '@emotion/core'
-import facepaint from 'facepaint'
-import styles from '../../theme'
+// import facepaint from 'facepaint'
+// import styles from '../../theme'
 import mq from '../helpers/media-queries'
 
 const buttonStyle = css`
     position: fixed;
     right: 1rem;
     top: 1rem;
+    z-index: 1;
     ${mq[1]} {
         display: none;
     }

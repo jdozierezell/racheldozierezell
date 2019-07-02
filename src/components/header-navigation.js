@@ -6,27 +6,46 @@ import mq from '../helpers/media-queries'
 
 const pageList = css`
     position: fixed;
-    ${mq[1]} {
-        display: flex;
-    }
     max-width: 960px;
     list-style: none;
-    margin: 2rem 0;
-    padding: 0;
+    padding: 36% 0% 0% 18%;
     gap: 4rem;
     justify-content: flex-start;
-    transition: left 200ms ease-out;
+    transition: left 150ms ease-out, right 150ms ease-out;
+    z-index: 0;
+    background: ${styles.colors.pink60};
+    border: 4px solid ${styles.colors.pink};
+    ${mq[1]} {
+        display: flex;
+        padding: 0%;
+        position: initial;
+        background: transparent;
+        border: none;
+    }
 `
 const pageListInactive = css`
     left: 100vw;
+    top: -1.25rem;
+    right: -100vw;
+    bottom: 40vw;
 `
 const pageListActive = css`
-    left: 20vw;
+    left: 18vw;
+    top: -1.25rem;
+    right: -4px;
+    bottom: 40vw;
+    background: ${styles.colors.pink60};
+    border: 4px solid ${styles.colors.pink};
 `
 const pageListItem = css`
     font-size: 32px;
     color: white;
-    font-family: rockwell-nova, sans-serif;
+    margin-bottom: 3rem;
+    font-family: ${styles.fonts.rockwell};
+    ${mq[1]} {
+        margin-bottom: initial;
+        padding: 1rem 0;
+    }
 `
 const navLink = css`
     color: white;
@@ -48,9 +67,6 @@ const navLinks = [
 ]
 
 class HeaderNavigation extends Component {
-    constructor(props) {
-        super(props)
-    }
     state = {
         active: this.props.active,
     }
