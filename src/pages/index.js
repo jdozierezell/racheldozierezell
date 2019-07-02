@@ -1,6 +1,6 @@
 import React from 'react'
 // import { Link } from 'gatsby'
-import { graphql } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
 import { HelmetDatoCms } from 'gatsby-source-datocms'
 import Image from 'gatsby-image'
 import { css } from '@emotion/core'
@@ -33,11 +33,12 @@ const heading2Style = css`
     font-family: ${styles.fonts.rockwell};
 `
 
-const IndexPage = ({ data }) => {
+const IndexPage = () => {
+    const data = useStaticQuery(query)
     const { seo, home, works } = data
     const sources = [
         home.mobileImage.fluid,
-        { ...home.desktopImage.fluid, media: `(min-width: 800px` },
+        { ...home.desktopImage.fluid, media: `(min-width: 800px)` },
     ]
     return (
         <>
@@ -62,7 +63,7 @@ const IndexPage = ({ data }) => {
     )
 }
 
-export const query = graphql`
+const query = graphql`
     query {
         seo: datoCmsHome(title: { eq: "Home" }) {
             title
@@ -86,11 +87,11 @@ export const query = graphql`
             }
             mobileImage: coverImage {
                 fluid(
-                    maxWidth: 1080
+                    maxWidth: 2160
                     imgixParams: {
-                        dpr: 2
-                        w: "1080"
-                        h: "500"
+                        dpr: 3
+                        w: "2160"
+                        h: "1000"
                         fit: "crop"
                         crop: "faces"
                     }

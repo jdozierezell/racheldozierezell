@@ -10,10 +10,12 @@ import HeaderNavigation from './header-navigation'
 
 const SiteHeader = styled.header`
     height: 102px;
-    display: none;
+    display: grid;
+    position: absolute;
     grid-template-columns: 150px 1fr;
     ${mq[1]} {
         display: grid;
+        position: relative;
     }
 `
 const navWrapper = css`
