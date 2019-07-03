@@ -12,6 +12,7 @@ const SiteHeader = styled.header`
     display: grid;
     position: absolute;
     grid-template-columns: 150px 1fr;
+    z-index: 1;
     ${mq[1]} {
         height: 102px;
         display: grid;

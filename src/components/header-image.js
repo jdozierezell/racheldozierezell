@@ -19,14 +19,17 @@ const titleHeader = css`
     filter: drop-shadow(5px 5px 5px ${styles.colors.black});
 `
 const HeaderImage = props => {
-    const { image, large, title } = props
-    console.log(image)
+    const { image, large, title, background } = props
     const sources = [
         image[0].fluid,
         { ...image[1].fluid, media: `(min-width: 800px)` },
     ]
     return (
-        <BackgroundImage css={styledHeaderImage} fluid={sources}>
+        <BackgroundImage
+            css={styledHeaderImage}
+            fluid={sources}
+            backgroundColor={background}
+        >
             <h1 css={titleHeader}>
                 {large && (
                     <span

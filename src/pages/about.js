@@ -21,7 +21,7 @@ const About = () => {
     return (
         <Layout>
             <HelmetDatoCms seo={seoMetaTags} />
-            <HeaderImage image={[desktopImage, mobileImage]} title={title} />
+            <HeaderImage image={[mobileImage, desktopImage]} title={title} />
             <div css={barStyle} />
             <article css={articleStyle}>
                 {content.map(block => {

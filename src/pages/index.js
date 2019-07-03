@@ -42,7 +42,8 @@ const IndexPage = () => {
                 <HeaderImage
                     image={[home.mobileImage, home.desktopImage]}
                     large="Rachel"
-                    title={'Dozier-Ezell'}
+                    title="Dozier-Ezell"
+                    background={true}
                 />
                 <h2 css={heading1Style}>Work</h2>
                 {works.edges.map(({ node }) => {
@@ -51,6 +52,7 @@ const IndexPage = () => {
                             <Image
                                 css={styledWorkImage}
                                 fluid={node.images[0].fluid}
+                                backgroundColor={true}
                             />
                             <h2 css={heading2Style}>{node.title}</h2>
                         </article>

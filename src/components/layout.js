@@ -23,7 +23,6 @@ const Layout = ({ children, home }) => {
                     margin: `0 auto`,
                     maxWidth: 960,
                     position: 'relative',
-                    zIndex: -1,
                 }}
             >
                 <main>{children}</main>
