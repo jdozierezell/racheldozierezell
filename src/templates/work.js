@@ -1,11 +1,12 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
-import { css } from '@emotion/core'
+import { graphql } from 'gatsby'
+import { Global, css } from '@emotion/core'
 import { HelmetDatoCms } from 'gatsby-source-datocms'
 import Slider from 'react-slick'
+import Image from 'gatsby-image'
+import 'react-image-lightbox/style.css'
 import Layout from '../components/layout'
 import HeaderImage from '../components/header-image'
-import Image from 'gatsby-image'
 import styles from '../../theme'
 
 const barStyle = css`
@@ -16,16 +17,31 @@ const articleStyle = css`
     margin: 3rem 2rem;
     line-height: 1.5;
 `
-const MyComponent = () => {
-    const { work } = useStaticQuery(query)
-    const { title, description, images, seo } = work
-    const settings = { dots: true }
+const Work = ({ data }) => {
+    const { title, description, images, seo } = data.work
+    const settings = {
+        dots: true,
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        easing: 'ease-in-out',
+        swipeToSlide: true,
+        lazyLoad: true,
+    }
     return (
         <Layout
             css={css`
                 color: white;
             `}
         >
+            <Global
+                styles={css`
+                    .slick-track {
+                        display: flex;
+                        align-items: center;
+                    }
+                `}
+            />
             <HelmetDatoCms seo={seo} />
             <HeaderImage image={images[0].fluid} title={title} />
             <div css={barStyle} />
@@ -35,23 +51,23 @@ const MyComponent = () => {
                 <Slider {...settings}>
                     {images.map((image, index) => {
                         return (
-                            <div>
-                                <Image fluid={image.fluid} />
+                            <div key={index}>
+                                <Image
+                                    fluid={image.fluid}
+                                    backgroundColor={styles.colors.gray}
+                                />
                             </div>
                         )
                     })}
-                    <div>
-                        <h3>1</h3>
-                    </div>
                 </Slider>
             </article>
         </Layout>
     )
 }
 
-const query = graphql`
-    query {
-        work: datoCmsWork {
+export const query = graphql`
+    query getWork($slug: String!) {
+        work: datoCmsWork(slug: { eq: $slug }) {
             seo: seoMetaTags {
                 tags
             }
@@ -59,16 +75,7 @@ const query = graphql`
             slug
             description
             images {
-                fluid(
-                    maxWidth: 2160
-                    imgixParams: {
-                        w: "2160"
-                        h: "1000"
-                        fit: "crop"
-                        crop: "faces"
-                        q: 75
-                    }
-                ) {
+                fluid(maxWidth: 2160) {
                     ...GatsbyDatoCmsFluid_tracedSVG
                 }
             }
@@ -76,4 +83,4 @@ const query = graphql`
     }
 `
 
-export default MyComponent
+export default Work

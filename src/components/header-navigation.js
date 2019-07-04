@@ -31,7 +31,7 @@ const pageListInactive = css`
 `
 const pageListActive = css`
     left: 18vw;
-    top: -1.25rem;
+    top: -2rem;
     right: -4px;
     bottom: 40vw;
     background: ${styles.colors.pink60};

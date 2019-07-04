@@ -71,8 +71,8 @@ const Contact = () => {
     return (
         <Layout>
             <HelmetDatoCms seo={seo.seoMetaTags} />
-            <div css={barStyle} />
             <HeaderImage image={[mobileImage, desktopImage]} title={title} />
+            <div css={barStyle} />
             {content && (
                 <article css={articleStyle}>
                     <div dangerouslySetInnerHTML={{ __html: content }} />
