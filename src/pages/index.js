@@ -32,6 +32,9 @@ const heading2Style = css`
     font-family: ${styles.fonts.rockwell};
     margin: 1rem 1rem 4rem 1rem;
 `
+const workStyle = css`
+    text-decoration: none;
+`
 const IndexPage = () => {
     const data = useStaticQuery(query)
     const { seo, home, works } = data
@@ -48,7 +51,11 @@ const IndexPage = () => {
                 {works.edges.map(({ node }) => {
                     return (
                         <article css={articleStyle} key={node.id}>
-                            <AniLink fade to={`work/${node.slug}`}>
+                            <AniLink
+                                css={workStyle}
+                                fade
+                                to={`/work/${node.slug}`}
+                            >
                                 <Image
                                     css={styledWorkImage}
                                     fluid={node.images[0].fluid}
