@@ -5,10 +5,5 @@
  */
 
 // You can delete this file if you're not using it
-export const onClientEntry = () => {
-    // IntersectionObserver polyfill for gatsby-background-image (Safari, IE)
-    if (typeof window.IntersectionObserver === `undefined`) {
-        import(`intersection-observer`)
-        console.log(`# IntersectionObserver is polyfilled!`)
-    }
-}
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'

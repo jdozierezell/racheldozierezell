@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'gatsby'
 import { css } from '@emotion/core'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import styles from '../../theme'
 import mq from '../helpers/media-queries'
 
@@ -80,12 +80,12 @@ class HeaderNavigation extends Component {
             : [pageList, pageListInactive]
         return (
             <ul css={pageListStyle}>
-                {navLinks.map(item => {
+                {navLinks.map((item, index) => {
                     return (
-                        <li css={pageListItem}>
-                            <Link css={navLink} to={item.navLink}>
+                        <li css={pageListItem} key={index}>
+                            <AniLink fade css={navLink} to={item.navLink}>
                                 {item.navText}
-                            </Link>
+                            </AniLink>
                         </li>
                     )
                 })}

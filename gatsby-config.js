@@ -13,6 +13,7 @@ module.exports = {
         `gatsby-plugin-sharp`,
         `gatsby-plugin-emotion`,
         `gatsby-plugin-playground`,
+        `gatsby-plugin-transition-link`,
         {
             resolve: `gatsby-source-datocms`,
             options: {

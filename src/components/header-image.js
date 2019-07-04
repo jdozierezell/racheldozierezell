@@ -20,15 +20,21 @@ const titleHeader = css`
 `
 const HeaderImage = props => {
     const { image, large, title, background } = props
-    const sources = [
-        image[0].fluid,
-        { ...image[1].fluid, media: `(min-width: 800px)` },
-    ]
+    let sources
+    if (Array.isArray(image)) {
+        sources = [
+            image[0].fluid,
+            { ...image[1].fluid, media: `(min-width: 800px)` },
+        ]
+    } else {
+        sources = image
+    }
+    const backgroundColor = background ? background : styles.colors.gray
     return (
         <BackgroundImage
             css={styledHeaderImage}
             fluid={sources}
-            backgroundColor={background}
+            backgroundColor={backgroundColor}
         >
             <h1 css={titleHeader}>
                 {large && (

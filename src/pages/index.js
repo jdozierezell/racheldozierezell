@@ -1,9 +1,9 @@
 import React from 'react'
-// import { Link } from 'gatsby'
 import { useStaticQuery, graphql } from 'gatsby'
 import { HelmetDatoCms } from 'gatsby-source-datocms'
 import Image from 'gatsby-image'
 import { css } from '@emotion/core'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import Layout from '../components/layout'
 import HeaderImage from '../components/header-image'
 import styles from '../../theme'
@@ -43,18 +43,19 @@ const IndexPage = () => {
                     image={[home.mobileImage, home.desktopImage]}
                     large="Rachel"
                     title="Dozier-Ezell"
-                    background={true}
                 />
                 <h2 css={heading1Style}>Work</h2>
                 {works.edges.map(({ node }) => {
                     return (
-                        <article css={articleStyle}>
-                            <Image
-                                css={styledWorkImage}
-                                fluid={node.images[0].fluid}
-                                backgroundColor={true}
-                            />
-                            <h2 css={heading2Style}>{node.title}</h2>
+                        <article css={articleStyle} key={node.id}>
+                            <AniLink fade to={`work/${node.slug}`}>
+                                <Image
+                                    css={styledWorkImage}
+                                    fluid={node.images[0].fluid}
+                                    backgroundColor={styles.colors.gray}
+                                />
+                                <h2 css={heading2Style}>{node.title}</h2>
+                            </AniLink>
                         </article>
                     )
                 })}

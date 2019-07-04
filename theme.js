@@ -3,6 +3,7 @@ const styles = {
         white: 'rgba(255,255,255,1)',
         pink: 'rgba(242,5,92,1)',
         black: 'rgba(0,0,0,1)',
+        gray: 'rgba(40,40,40,1)',
         white80: 'rgba(255,255,255,0.8)',
         pink80: 'rgba(242,5,92,0.8)',
         black80: 'rgba(0,0,0,1,0.8)',
