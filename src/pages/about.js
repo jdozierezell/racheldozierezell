@@ -3,16 +3,28 @@ import Layout from '../components/layout'
 import { useStaticQuery, graphql } from 'gatsby'
 import { HelmetDatoCms } from 'gatsby-source-datocms'
 import { css } from '@emotion/core'
+import mq from '../helpers/media-queries'
 import HeaderImage from '../components/header-image'
 import styles from '../../theme'
 
 const barStyle = css`
     height: 2rem;
     background: ${styles.colors.pink};
+    ${mq[1]} {
+        height: 4px;
+    }
 `
 const articleStyle = css`
     margin: 3rem 2rem;
     line-height: 1.5;
+    max-width: 800px;
+    ${mq[1]} {
+        margin: 3rem auto;
+        position: relative;
+        top: -10rem;
+        background: ${styles.colors.black};
+        padding: 0.01px 2rem; // small top added to wrap p margins
+    }
 `
 const About = () => {
     const data = useStaticQuery(query)

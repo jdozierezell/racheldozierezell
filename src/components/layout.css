@@ -1,4 +1,7 @@
 @import url('https://use.typekit.net/dsh8zdl.css');
+* {
+    box-sizing: border-box;
+}
 body {
     background: black;
     font-family: mr-eaves-modern, sans-serif;

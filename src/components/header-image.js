@@ -2,12 +2,17 @@ import React from 'react'
 import BackgroundImage from 'gatsby-background-image'
 import { css } from '@emotion/core'
 import styles from '../../theme'
+import mq from '../helpers/media-queries'
 
 const styledHeaderImage = css`
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    ${mq[1]} {
+        width: 100vw;
+        height: 70vh;
+    }
 `
 const titleHeader = css`
     font-family: ${styles.fonts.rockwell};
@@ -29,6 +34,7 @@ const HeaderImage = props => {
     } else {
         sources = image
     }
+    console.log(image)
     const backgroundColor = background ? background : styles.colors.gray
     return (
         <BackgroundImage

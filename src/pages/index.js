@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { HelmetDatoCms } from 'gatsby-source-datocms'
 import Image from 'gatsby-image'
@@ -7,33 +7,47 @@ import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import Layout from '../components/layout'
 import HeaderImage from '../components/header-image'
 import styles from '../../theme'
+import mq from '../helpers/media-queries'
 
+const sectionStyle = css`
+    display: flex;
+    flex-flow: row wrap;
+    margin: 3rem 2rem;
+`
 const articleStyle = css`
-    margin: 1rem auto;
     text-align: center;
+    max-width: 400px;
+    margin: 1rem auto 4rem auto;
+    position: relative;
 `
 const styledWorkImage = css`
+    display: block;
     border: 4px solid ${styles.colors.pink};
-    border-radius: 10%;
-    margin: 0 25vw;
-`
-const heading1Style = css`
-    background: ${styles.colors.pink};
-    padding: 1rem;
-    margin: 0 0 4rem 0;
-    font-size: ${styles.fontSizes.heading};
-    color: ${styles.colors.white};
-    font-family: ${styles.fonts.rockwell};
-    text-align: center;
+    width: 70vw;
+    max-width: 400px;
+    margin: 0 auto;
 `
 const heading2Style = css`
     color: ${styles.colors.white};
     font-size: ${styles.fontSizes.heading};
     font-family: ${styles.fonts.rockwell};
-    margin: 1rem 1rem 4rem 1rem;
+    width: 100%;
+    ${mq[1]} {
+        font-size: ${styles.fontSizes.text};
+        position: absolute;
+        top: 40%;
+        filter: drop-shadow(5px 5px 5px ${styles.colors.black});
+    }
 `
 const workStyle = css`
     text-decoration: none;
+`
+const barStyle = css`
+    height: 2rem;
+    background: ${styles.colors.pink};
+    ${mq[1]} {
+        height: 4px;
+    }
 `
 const IndexPage = () => {
     const data = useStaticQuery(query)
@@ -47,25 +61,27 @@ const IndexPage = () => {
                     large="Rachel"
                     title="Dozier-Ezell"
                 />
-                <h2 css={heading1Style}>Work</h2>
-                {works.edges.map(({ node }) => {
-                    return (
-                        <article css={articleStyle} key={node.id}>
-                            <AniLink
-                                css={workStyle}
-                                fade
-                                to={`/work/${node.slug}`}
-                            >
-                                <Image
-                                    css={styledWorkImage}
-                                    fluid={node.images[0].fluid}
-                                    backgroundColor={styles.colors.gray}
-                                />
-                                <h2 css={heading2Style}>{node.title}</h2>
-                            </AniLink>
-                        </article>
-                    )
-                })}
+                <div css={barStyle} />
+                <section css={sectionStyle}>
+                    {works.edges.map(({ node }) => {
+                        return (
+                            <article css={articleStyle} key={node.id}>
+                                <AniLink
+                                    css={workStyle}
+                                    fade
+                                    to={`/work/${node.slug}`}
+                                >
+                                    <Image
+                                        css={styledWorkImage}
+                                        fluid={node.images[0].fluid}
+                                        backgroundColor={styles.colors.gray}
+                                    />
+                                    <h2 css={heading2Style}>{node.title}</h2>
+                                </AniLink>
+                            </article>
+                        )
+                    })}
+                </section>
             </Layout>
         </>
     )
@@ -101,7 +117,7 @@ const query = graphql`
                         w: "2160"
                         h: "1215"
                         fit: "crop"
-                        crop: "edges"
+                        crop: "faces"
                         q: 75
                     }
                 ) {
@@ -118,8 +134,8 @@ const query = graphql`
                     images {
                         fluid(
                             imgixParams: {
-                                w: "500"
-                                h: "500"
+                                w: "1747"
+                                h: "1080"
                                 fit: "crop"
                                 crop: "faces"
                             }

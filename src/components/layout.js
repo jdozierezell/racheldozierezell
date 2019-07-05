@@ -18,15 +18,13 @@ const Layout = ({ children, home }) => {
     return (
         <>
             <Header home={home} />
-            <div
+            <main
                 style={{
-                    margin: `0 auto`,
-                    maxWidth: 960,
                     position: 'relative',
                 }}
             >
-                <main>{children}</main>
-            </div>
+                {children}
+            </main>
             <Footer />
         </>
     )

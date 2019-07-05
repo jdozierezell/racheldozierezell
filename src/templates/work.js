@@ -18,15 +18,31 @@ const articleStyle = css`
     line-height: 1.5;
 `
 const Work = ({ data }) => {
-    const { title, description, images, seo } = data.work
+    const {
+        title,
+        description,
+        mobileImage,
+        desktopImage,
+        images,
+        seo,
+    } = data.work
     const settings = {
         dots: true,
         infinite: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
+        slidesToShow: 3,
+        slidesToScroll: 2,
         easing: 'ease-in-out',
         swipeToSlide: true,
         lazyLoad: true,
+        responsive: [
+            {
+                breakpoint: 800,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
+            },
+        ],
     }
     return (
         <Layout
@@ -43,7 +59,10 @@ const Work = ({ data }) => {
                 `}
             />
             <HelmetDatoCms seo={seo} />
-            <HeaderImage image={images[0].fluid} title={title} />
+            <HeaderImage
+                image={[mobileImage[0], desktopImage[0]]}
+                title={title}
+            />
             <div css={barStyle} />
             <article css={articleStyle}>
                 <h2>About {title}</h2>
@@ -53,6 +72,9 @@ const Work = ({ data }) => {
                         return (
                             <div key={index}>
                                 <Image
+                                    css={css`
+                                        margin: 1rem;
+                                    `}
                                     fluid={image.fluid}
                                     backgroundColor={styles.colors.gray}
                                 />
@@ -74,6 +96,34 @@ export const query = graphql`
             title
             slug
             description
+            mobileImage: images {
+                fluid(
+                    maxWidth: 2160
+                    imgixParams: {
+                        w: "2160"
+                        h: "1000"
+                        fit: "crop"
+                        crop: "faces"
+                        q: 75
+                    }
+                ) {
+                    ...GatsbyDatoCmsFluid_tracedSVG
+                }
+            }
+            desktopImage: images {
+                fluid(
+                    maxWidth: 2160
+                    imgixParams: {
+                        w: "2160"
+                        h: "1215"
+                        fit: "crop"
+                        crop: "faces"
+                        q: 75
+                    }
+                ) {
+                    ...GatsbyDatoCmsFluid_tracedSVG
+                }
+            }
             images {
                 fluid(maxWidth: 2160) {
                     ...GatsbyDatoCmsFluid_tracedSVG
