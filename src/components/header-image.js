@@ -34,7 +34,6 @@ const HeaderImage = props => {
     } else {
         sources = image
     }
-    console.log(image)
     const backgroundColor = background ? background : styles.colors.gray
     return (
         <BackgroundImage

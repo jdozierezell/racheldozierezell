@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 import { Global, css } from '@emotion/core'
 import { HelmetDatoCms } from 'gatsby-source-datocms'
 import Slider from 'react-slick'
+import Lightbox from 'react-image-lightbox'
 import Image from 'gatsby-image'
 import 'react-image-lightbox/style.css'
 import Layout from '../components/layout'
@@ -44,6 +45,35 @@ const Work = ({ data }) => {
             },
         ],
     }
+    const [current, setCurrent] = useState('')
+    const [prev, setPrev] = useState('')
+    const [next, setNext] = useState('')
+    const imageArray = []
+    images.forEach(image => {
+        imageArray.push(image.fluid.src)
+    })
+    const handleImageClick = event => {
+        if (window.innerWidth < 800) return
+        const prevImageIndex = imageArray.indexOf(event.target.src) - 1
+        const nextImageIndex = imageArray.indexOf(event.target.src) + 1
+        setPrev(imageArray[prevImageIndex])
+        setCurrent(event.target.src)
+        setNext(imageArray[nextImageIndex])
+    }
+    const handlePrevClick = () => {
+        const temps = { prev, current, next }
+        const newPrev = imageArray.indexOf(temps.prev) - 1
+        setPrev(imageArray[newPrev])
+        setCurrent(temps.prev)
+        setNext(temps.current)
+    }
+    const handleNextClick = () => {
+        const temps = { prev, current, next }
+        const newNext = imageArray.indexOf(temps.next) + 1
+        setPrev(temps.current)
+        setCurrent(temps.next)
+        setNext(imageArray[newNext])
+    }
     return (
         <Layout
             css={css`
@@ -70,7 +100,7 @@ const Work = ({ data }) => {
                 <Slider {...settings}>
                     {images.map((image, index) => {
                         return (
-                            <div key={index}>
+                            <div key={index} onClick={handleImageClick}>
                                 <Image
                                     css={css`
                                         margin: 1rem;
@@ -82,6 +112,16 @@ const Work = ({ data }) => {
                         )
                     })}
                 </Slider>
+                {current && (
+                    <Lightbox
+                        mainSrc={current}
+                        onCloseRequest={() => setCurrent('')}
+                        prevSrc={prev}
+                        nextSrc={next}
+                        onMovePrevRequest={() => handlePrevClick()}
+                        onMoveNextRequest={() => handleNextClick()}
+                    />
+                )}
             </article>
         </Layout>
     )
