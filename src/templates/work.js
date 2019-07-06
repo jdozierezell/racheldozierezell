@@ -30,7 +30,7 @@ const articleStyle = css`
 const headerStyle = css`
     ${mq[1]} {
         order: 2;
-        margin-top: 18vh;
+        margin-top: 24vh;
     }
 `
 const descriptionStyle = css`
@@ -42,7 +42,7 @@ const sliderStyle = css`
     ${mq[1]} {
         order: 1;
         position: absolute;
-        top: 37vh;
+        top: 34vh;
         left: 4rem;
         right: 4rem;
         width: calc(100vw - 8rem);
@@ -105,6 +105,7 @@ const Work = ({ data }) => {
         easing: 'ease-in-out',
         swipeToSlide: true,
         lazyLoad: true,
+        adaptiveHeight: false,
         prevArrow: <PrevArrow />,
         nextArrow: <NextArrow />,
         responsive: [

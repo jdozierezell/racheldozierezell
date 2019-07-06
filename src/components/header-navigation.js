@@ -28,6 +28,9 @@ const pageListInactive = css`
     top: -1.25rem;
     right: -100vw;
     bottom: 40vw;
+    ${mq[1]} {
+        margin: 10px;
+    }
 `
 const pageListActive = css`
     left: 18vw;
