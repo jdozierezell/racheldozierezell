@@ -9,15 +9,85 @@ import 'react-image-lightbox/style.css'
 import Layout from '../components/layout'
 import HeaderImage from '../components/header-image'
 import styles from '../../theme'
+import mq from '../helpers/media-queries'
 
 const barStyle = css`
     height: 2rem;
     background: ${styles.colors.pink};
+    ${mq[1]} {
+        height: 4px;
+    }
 `
 const articleStyle = css`
     margin: 3rem 2rem;
     line-height: 1.5;
+    display: flex;
+    flex-flow: row wrap;
+    > * {
+        width: 100%;
+    }
 `
+const headerStyle = css`
+    ${mq[1]} {
+        order: 2;
+        margin-top: 18vh;
+    }
+`
+const descriptionStyle = css`
+    ${mq[1]} {
+        order: 3;
+    }
+`
+const sliderStyle = css`
+    ${mq[1]} {
+        order: 1;
+        position: absolute;
+        top: 37vh;
+        left: 4rem;
+        right: 4rem;
+        width: calc(100vw - 8rem);
+    }
+    img {
+        border: 4px solid ${styles.colors.pink};
+        cursor: pointer;
+    }
+`
+const prevArrow = css`
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent;
+    border-right: 50px solid ${styles.colors.white60};
+    border-bottom: 50px solid transparent;
+    left: -3rem;
+    :before {
+        display: none !important;
+    }
+    :hover {
+        border-right: 50px solid ${styles.colors.white80};
+    }
+`
+const nextArrow = css`
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent;
+    border-left: 50px solid ${styles.colors.white60};
+    border-bottom: 50px solid transparent;
+    right: -3rem;
+    :before {
+        display: none !important;
+    }
+    :hover {
+        border-left: 50px solid ${styles.colors.white80};
+    }
+`
+function PrevArrow(props) {
+    const { className, onClick } = props
+    return <div css={prevArrow} className={className} onClick={onClick} />
+}
+function NextArrow(props) {
+    const { className, onClick } = props
+    return <div css={nextArrow} className={className} onClick={onClick} />
+}
 const Work = ({ data }) => {
     const {
         title,
@@ -30,12 +100,28 @@ const Work = ({ data }) => {
     const settings = {
         dots: true,
         infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 2,
+        slidesToShow: 5,
+        slidesToScroll: 4,
         easing: 'ease-in-out',
         swipeToSlide: true,
         lazyLoad: true,
+        prevArrow: <PrevArrow />,
+        nextArrow: <NextArrow />,
         responsive: [
+            {
+                breakpoint: 1600,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 3,
+                },
+            },
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 2,
+                },
+            },
             {
                 breakpoint: 800,
                 settings: {
@@ -89,15 +175,15 @@ const Work = ({ data }) => {
                 `}
             />
             <HelmetDatoCms seo={seo} />
-            <HeaderImage
-                image={[mobileImage[0], desktopImage[0]]}
-                title={title}
-            />
+            <HeaderImage image={[mobileImage[0], desktopImage[0]]} />
             <div css={barStyle} />
             <article css={articleStyle}>
-                <h2>About {title}</h2>
-                <div dangerouslySetInnerHTML={{ __html: description }} />
-                <Slider {...settings}>
+                <h2 css={headerStyle}>{title}</h2>
+                <div
+                    css={descriptionStyle}
+                    dangerouslySetInnerHTML={{ __html: description }}
+                />
+                <Slider css={sliderStyle} {...settings}>
                     {images.map((image, index) => {
                         return (
                             <div key={index} onClick={handleImageClick}>

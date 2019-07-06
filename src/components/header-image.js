@@ -11,7 +11,7 @@ const styledHeaderImage = css`
     justify-content: center;
     ${mq[1]} {
         width: 100vw;
-        height: 70vh;
+        height: 60vh;
     }
 `
 const titleHeader = css`

@@ -14,7 +14,7 @@ const SiteHeader = styled.header`
     grid-template-columns: 150px 1fr;
     z-index: 1;
     ${mq[1]} {
-        height: 102px;
+        height: 90px;
         display: grid;
         position: relative;
     }
@@ -26,7 +26,7 @@ const navWrapper = css`
 const logo = css`
     fill: white;
     width: 72px;
-    margin: 1rem;
+    margin: 0.5rem;
     display: none;
     ${mq[1]} {
         display: block;
