@@ -1,28 +1,35 @@
-// import { Link } from 'gatsby'
-// import PropTypes from 'prop-types'
 import React from 'react'
 import styled from '@emotion/styled'
-// import { css } from '@emotion/core'
+import { css } from '@emotion/core'
 import styles from '../../theme'
 import mq from '../helpers/media-queries'
+import Logo from './logo'
 
 const PageFooter = styled.footer`
     color: ${styles.colors.white};
-    height: 104px;
+    height: 70px;
     background: ${styles.colors.pink};
     font-size: 1rem;
     font-family: rockwell-nova, sans-serif;
-    display: grid;
-    align-content: center;
-    justify-content: center;
-    padding-right: 1rem;
-    ${mq[1]} {
-        justify-content: flex-end;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    small {
+        padding-right: 1rem;
     }
 `
 
 const Footer = () => (
-    <PageFooter>© {new Date().getFullYear()}, Rachel Dozier-Ezell</PageFooter>
+    <PageFooter>
+        <Logo hide={false} />
+        <small
+            css={css`
+                font-size: 1rem;
+            `}
+        >
+            © {new Date().getFullYear()}, Rachel Dozier-Ezell
+        </small>
+    </PageFooter>
 )
 
 export default Footer

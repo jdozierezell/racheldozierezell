@@ -15,6 +15,12 @@ module.exports = {
         `gatsby-plugin-playground`,
         `gatsby-plugin-transition-link`,
         {
+            resolve: 'gatsby-plugin-html-attributes',
+            options: {
+                lang: 'en',
+            },
+        },
+        {
             resolve: `gatsby-source-datocms`,
             options: {
                 apiToken: process.env.DATOCMS_API,

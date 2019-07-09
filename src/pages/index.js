@@ -29,14 +29,12 @@ const styledWorkImage = css`
 `
 const heading2Style = css`
     color: ${styles.colors.white};
-    font-size: ${styles.fontSizes.heading};
-    font-family: ${styles.fonts.rockwell};
+    font-size: ${styles.fontSizes.text};
+    position: absolute;
+    top: 40%;
+    filter: drop-shadow(5px 5px 5px ${styles.colors.black});
     width: 100%;
     ${mq[1]} {
-        font-size: ${styles.fontSizes.text};
-        position: absolute;
-        top: 40%;
-        filter: drop-shadow(5px 5px 5px ${styles.colors.black});
     }
 `
 const workStyle = css`
@@ -73,7 +71,7 @@ const IndexPage = () => {
                                 >
                                     <Image
                                         css={styledWorkImage}
-                                        fluid={node.images[0].fluid}
+                                        fluid={node.thumb.fluid}
                                         backgroundColor={styles.colors.gray}
                                     />
                                     <h2 css={heading2Style}>{node.title}</h2>
@@ -100,8 +98,8 @@ const query = graphql`
                 fluid(
                     maxWidth: 2160
                     imgixParams: {
-                        w: "2160"
-                        h: "1000"
+                        w: "1590"
+                        h: "736"
                         fit: "crop"
                         crop: "faces"
                         q: 75
@@ -114,8 +112,8 @@ const query = graphql`
                 fluid(
                     maxWidth: 2160
                     imgixParams: {
-                        w: "2160"
-                        h: "1215"
+                        w: "2400"
+                        h: "1080"
                         fit: "crop"
                         crop: "faces"
                         q: 75
@@ -125,19 +123,21 @@ const query = graphql`
                 }
             }
         }
-        works: allDatoCmsWork {
+        works: allDatoCmsWork(sort: { fields: order, order: DESC }) {
             edges {
                 node {
                     id: originalId
                     title
                     slug
-                    images {
+                    thumb: coverImage {
                         fluid(
+                            maxWidth: 500
                             imgixParams: {
-                                w: "1747"
-                                h: "1080"
+                                w: "500"
+                                h: "310"
                                 fit: "crop"
                                 crop: "faces"
+                                q: 75
                             }
                         ) {
                             ...GatsbyDatoCmsFluid_tracedSVG

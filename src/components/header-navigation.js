@@ -29,7 +29,7 @@ const pageListInactive = css`
     right: -100vw;
     bottom: 40vw;
     ${mq[1]} {
-        margin: 10px;
+        margin: 0px;
     }
 `
 const pageListActive = css`
@@ -41,7 +41,7 @@ const pageListActive = css`
     border: 4px solid ${styles.colors.pink};
 `
 const pageListItem = css`
-    font-size: 32px;
+    font-size: ${styles.fontSizes.text};
     color: white;
     margin-bottom: 3rem;
     font-family: ${styles.fonts.rockwell};

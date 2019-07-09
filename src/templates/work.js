@@ -30,7 +30,7 @@ const articleStyle = css`
 const headerStyle = css`
     ${mq[1]} {
         order: 2;
-        margin-top: 24vh;
+        margin-top: 8vh;
     }
 `
 const descriptionStyle = css`
@@ -42,7 +42,7 @@ const sliderStyle = css`
     ${mq[1]} {
         order: 1;
         position: absolute;
-        top: 34vh;
+        top: 50vh;
         left: 4rem;
         right: 4rem;
         width: calc(100vw - 8rem);
@@ -94,7 +94,8 @@ const Work = ({ data }) => {
         description,
         mobileImage,
         desktopImage,
-        images,
+        thumb,
+        full,
         seo,
     } = data.work
     const settings = {
@@ -105,7 +106,6 @@ const Work = ({ data }) => {
         easing: 'ease-in-out',
         swipeToSlide: true,
         lazyLoad: true,
-        adaptiveHeight: false,
         prevArrow: <PrevArrow />,
         nextArrow: <NextArrow />,
         responsive: [
@@ -135,16 +135,21 @@ const Work = ({ data }) => {
     const [current, setCurrent] = useState('')
     const [prev, setPrev] = useState('')
     const [next, setNext] = useState('')
+    const thumbArray = []
     const imageArray = []
-    images.forEach(image => {
+    thumb.forEach(image => {
+        thumbArray.push(image.fluid.src)
+    })
+    full.forEach(image => {
         imageArray.push(image.fluid.src)
     })
     const handleImageClick = event => {
         if (window.innerWidth < 800) return
-        const prevImageIndex = imageArray.indexOf(event.target.src) - 1
-        const nextImageIndex = imageArray.indexOf(event.target.src) + 1
+        const prevImageIndex = thumbArray.indexOf(event.target.src) - 1
+        const currentImageIndex = thumbArray.indexOf(event.target.src)
+        const nextImageIndex = thumbArray.indexOf(event.target.src) + 1
         setPrev(imageArray[prevImageIndex])
-        setCurrent(event.target.src)
+        setCurrent(imageArray[currentImageIndex])
         setNext(imageArray[nextImageIndex])
     }
     const handlePrevClick = () => {
@@ -176,7 +181,7 @@ const Work = ({ data }) => {
                 `}
             />
             <HelmetDatoCms seo={seo} />
-            <HeaderImage image={[mobileImage[0], desktopImage[0]]} />
+            <HeaderImage image={[mobileImage, desktopImage]} />
             <div css={barStyle} />
             <article css={articleStyle}>
                 <h2 css={headerStyle}>{title}</h2>
@@ -185,7 +190,7 @@ const Work = ({ data }) => {
                     dangerouslySetInnerHTML={{ __html: description }}
                 />
                 <Slider css={sliderStyle} {...settings}>
-                    {images.map((image, index) => {
+                    {thumb.map((image, index) => {
                         return (
                             <div key={index} onClick={handleImageClick}>
                                 <Image
@@ -223,7 +228,7 @@ export const query = graphql`
             title
             slug
             description
-            mobileImage: images {
+            mobileImage: coverImage {
                 fluid(
                     maxWidth: 2160
                     imgixParams: {
@@ -237,7 +242,7 @@ export const query = graphql`
                     ...GatsbyDatoCmsFluid_tracedSVG
                 }
             }
-            desktopImage: images {
+            desktopImage: coverImage {
                 fluid(
                     maxWidth: 2160
                     imgixParams: {
@@ -251,8 +256,22 @@ export const query = graphql`
                     ...GatsbyDatoCmsFluid_tracedSVG
                 }
             }
-            images {
+            full: images {
                 fluid(maxWidth: 2160) {
+                    ...GatsbyDatoCmsFluid_tracedSVG
+                }
+            }
+            thumb: images {
+                fluid(
+                    maxWidth: 400
+                    imgixParams: {
+                        w: "500"
+                        h: "310"
+                        fit: "crop"
+                        crop: "faces"
+                        q: 75
+                    }
+                ) {
                     ...GatsbyDatoCmsFluid_tracedSVG
                 }
             }
