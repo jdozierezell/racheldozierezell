@@ -20,7 +20,6 @@ const Logo = props => {
         <svg
             css={hide ? logoHide : [logoHide, logoShow]}
             version="1.1"
-            id="rde_logo"
             viewBox="0 0 300 300"
         >
             <path
