@@ -9,7 +9,7 @@ const pageList = css`
     max-width: 960px;
     list-style: none;
     padding: 36% 0% 0% 18%;
-    gap: 4rem;
+    margin-right: 4rem;
     justify-content: flex-start;
     transition: left 150ms ease-out, right 150ms ease-out;
     z-index: 0;
