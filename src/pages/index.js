@@ -34,8 +34,7 @@ const heading2Style = css`
     top: 40%;
     filter: drop-shadow(5px 5px 5px ${styles.colors.black});
     width: 100%;
-    ${mq[1]} {
-    }
+    padding: 0 2rem;
 `
 const workStyle = css`
     text-decoration: none;

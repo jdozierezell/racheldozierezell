@@ -2,7 +2,6 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 import styles from '../../theme'
-import mq from '../helpers/media-queries'
 import Logo from './logo'
 
 const PageFooter = styled.footer`

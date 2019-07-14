@@ -8,8 +8,7 @@ const pageList = css`
     position: fixed;
     max-width: 960px;
     list-style: none;
-    padding: 36% 0% 0% 18%;
-    margin-right: 4rem;
+    padding: 36% 0 0 18%;
     justify-content: flex-start;
     transition: left 150ms ease-out, right 150ms ease-out;
     z-index: 0;
@@ -29,7 +28,7 @@ const pageListInactive = css`
     right: -100vw;
     bottom: 40vw;
     ${mq[1]} {
-        margin: 0px;
+        margin: 0;
     }
 `
 const pageListActive = css`
@@ -43,7 +42,7 @@ const pageListActive = css`
 const pageListItem = css`
     font-size: ${styles.fontSizes.text};
     color: white;
-    margin-bottom: 3rem;
+    margin: 0 4rem 3rem 0;
     font-family: ${styles.fonts.rockwell};
     ${mq[1]} {
         margin-bottom: initial;
