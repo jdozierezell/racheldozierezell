@@ -13,7 +13,7 @@ const pageList = css`
     transition: left 150ms ease-out, right 150ms ease-out;
     z-index: 0;
     background: ${styles.colors.pink60};
-    border: 4px solid ${styles.colors.pink};
+    margin: 0;
     ${mq[1]} {
         display: flex;
         padding: 0%;
@@ -24,20 +24,15 @@ const pageList = css`
 `
 const pageListInactive = css`
     left: 100vw;
-    top: -1.25rem;
+    top: 0;
     right: -100vw;
-    bottom: 40vw;
-    ${mq[1]} {
-        margin: 0;
-    }
+    bottom: 0;
 `
 const pageListActive = css`
-    left: 18vw;
-    top: -2rem;
-    right: -4px;
-    bottom: 40vw;
-    background: ${styles.colors.pink60};
-    border: 4px solid ${styles.colors.pink};
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
 `
 const pageListItem = css`
     font-size: ${styles.fontSizes.text};
@@ -65,6 +60,10 @@ const navLinks = [
     {
         navText: `Contact`,
         navLink: `/contact`,
+    },
+    {
+        navText: `EyeCraftYouCraft`,
+        navLink: `https://eyecraftyoucraft.com`,
     },
 ]
 
