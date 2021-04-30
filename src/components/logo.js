@@ -1,5 +1,5 @@
 import React from 'react'
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 import mq from '../helpers/media-queries'
 
 const logoHide = css`

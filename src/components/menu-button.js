@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 // import facepaint from 'facepaint'
 // import styles from '../../theme'
 import mq from '../helpers/media-queries'
