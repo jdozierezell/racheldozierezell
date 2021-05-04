@@ -95,13 +95,10 @@ const Contact = () => {
 	const handleChange = event => {
 		if (event.target.name === 'yourName') {
 			setYourName(event.target.value)
-			console.log(yourName)
 		} else if (event.target.name === '_replyto') {
 			setEmail(event.target.value)
-			console.log(email)
 		} else if (event.target.name === 'info') {
 			setInfo(event.target.value)
-			console.log(info)
 		}
 	}
 	return (

@@ -31,14 +31,12 @@ const HeaderImage = props => {
 	let backgroundImage = []
 	if (Array.isArray(image)) {
 		image.forEach(img => {
-			console.log(img)
 			backgroundImage.push(getSrc(img))
 		})
 	} else {
 		backgroundImage.push(getSrc(image))
 	}
 	const backgroundColor = background ? background : styles.colors.gray
-	console.log(backgroundImage)
 	const Background = styled.div`
 		${styledHeaderImage};
 		background-color: ${backgroundColor};
