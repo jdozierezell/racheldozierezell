@@ -6,21 +6,21 @@
     "author": "Kyle Mathews <mathews.kyle@gmail.com>",
     "dependencies": {
         "@emotion/core": "^11.0.0",
-        "@emotion/react": "^11.1.5",
+        "@emotion/react": "^11.4.0",
         "@emotion/styled": "^11.3.0",
-        "dotenv": "^8.0.0",
-        "gatsby": "^3.4.0",
+        "dotenv": "^9.0.1",
+        "gatsby": "^3.4.2",
         "gatsby-background-image": "^1.5.3",
         "gatsby-image": "^3.4.0",
         "gatsby-plugin-emotion": "^6.4.0",
         "gatsby-plugin-html-attributes": "^1.0.5",
-        "gatsby-plugin-image": "^1.4.0",
+        "gatsby-plugin-image": "^1.4.1",
         "gatsby-plugin-manifest": "^3.4.0",
         "gatsby-plugin-playground": "^1.0.6",
         "gatsby-plugin-react-helmet": "^4.4.0",
-        "gatsby-plugin-sharp": "^3.4.0",
+        "gatsby-plugin-sharp": "^3.4.2",
         "gatsby-plugin-transition-link": "^1.20.5",
-        "gatsby-source-datocms": "^2.6.13",
+        "gatsby-source-datocms": "^2.6.15",
         "gatsby-transformer-sharp": "^3.4.0",
         "gsap": "^3.6.1",
         "normalize.css": "^8.0.1",
@@ -33,7 +33,7 @@
         "slick-carousel": "^1.8.1"
     },
     "devDependencies": {
-        "prettier": "^2.2.1"
+        "prettier": "^2.3.0"
     },
     "keywords": [
         "gatsby"
